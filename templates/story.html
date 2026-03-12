@@ -1,0 +1,126 @@
+{% extends "base.html" %}
+{% block content %}
+
+<style>
+
+.page-title{
+    text-align:center;
+    font-size:48px;
+    font-weight:800;
+    margin-top:60px;
+    margin-bottom:20px;
+    background: linear-gradient(90deg,#00c6ff,#00f5a0);
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+}
+
+.story-subtitle{
+    text-align:center;
+    font-size:18px;
+    opacity:0.8;
+    margin-bottom:40px;
+    color:#cdebf3;
+}
+
+/* Tableau container */
+
+.viz-wrapper{
+    width:95%;
+    margin:auto;
+    border-radius:25px;
+    overflow:hidden;
+    background: rgba(255,255,255,0.05);
+    backdrop-filter: blur(10px);
+    box-shadow:0 20px 60px rgba(0,0,0,0.6);
+    padding:20px;
+}
+
+/* Tableau placeholder */
+
+.tableauPlaceholder{
+    width:100%;
+}
+
+/* Mobile */
+
+@media (max-width:768px){
+
+.page-title{
+    font-size:30px;
+}
+
+}
+
+</style>
+
+<section>
+
+<h2 class="page-title">Heart Disease Analysis Dashboard</h2>
+
+<p class="story-subtitle">
+Interactive dashboard exploring cardiovascular risk patterns,
+demographics, and lifestyle insights.
+</p>
+
+<div class="viz-wrapper">
+
+<div class="tableauPlaceholder" id="viz1772859283162" style="position:relative">
+
+<noscript>
+<a href="#">
+<img
+alt="Dashboard"
+src="https://public.tableau.com/static/images/He/HeartDiseaseAnalysisdash1/Story1/1_rss.png"
+style="border:none;width:100%"
+/>
+</a>
+</noscript>
+
+<object class="tableauViz" style="display:none">
+
+<param name="host_url" value="https://public.tableau.com/" />
+<param name="embed_code_version" value="3" />
+<param name="site_root" value="" />
+<param name="name" value="HeartDiseaseAnalysisdash1/Dashboard1" />
+<param name="tabs" value="yes" />
+<param name="toolbar" value="yes" />
+<param name="animate_transition" value="yes" />
+<param name="display_static_image" value="yes" />
+<param name="display_spinner" value="yes" />
+<param name="display_overlay" value="yes" />
+<param name="display_count" value="yes" />
+<param name="language" value="en-US" />
+
+</object>
+
+</div>
+
+</div>
+
+<script>
+
+var divElement = document.getElementById("viz1772859283162");
+var vizElement = divElement.getElementsByTagName("object")[0];
+
+if (divElement.offsetWidth > 800){
+    vizElement.style.width="100%";
+    vizElement.style.height="900px";
+}
+else if (divElement.offsetWidth > 500){
+    vizElement.style.width="100%";
+    vizElement.style.height="800px";
+}
+else{
+    vizElement.style.width="100%";
+    vizElement.style.height="1200px";
+}
+
+var scriptElement=document.createElement("script");
+scriptElement.src="https://public.tableau.com/javascripts/api/viz_v1.js";
+vizElement.parentNode.insertBefore(scriptElement,vizElement);
+
+</script>
+
+</section>
+
+{% endblock %}

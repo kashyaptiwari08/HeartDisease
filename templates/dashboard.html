@@ -1,0 +1,185 @@
+{% extends "base.html" %}
+{% block content %}
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap');
+
+body{
+    font-family:'Poppins',sans-serif;
+    background:#0f2027;
+    color:#e6f7ff;
+    margin:0;
+}
+
+.dashboard-container{
+    padding:60px 5%;
+}
+
+.page-title{
+    text-align:center;
+    font-size:42px;
+    font-weight:700;
+    margin-bottom:50px;
+    background:linear-gradient(90deg,#00c6ff,#00f5a0);
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+}
+
+/* Tabs */
+
+.tabs{
+    display:flex;
+    justify-content:center;
+    gap:20px;
+    flex-wrap:wrap;
+    margin-bottom:40px;
+}
+
+.tab-btn{
+    padding:12px 30px;
+    border-radius:30px;
+    border:none;
+    cursor:pointer;
+    font-weight:600;
+    background:rgba(255,255,255,0.08);
+    color:#cdebf3;
+    transition:.3s;
+}
+
+.tab-btn:hover{
+    background:linear-gradient(45deg,#00c6ff,#38f9d7);
+}
+
+.tab-btn.active{
+    background:linear-gradient(45deg,#00c6ff,#00f5a0);
+    box-shadow:0 0 20px rgba(0,200,255,0.5);
+    color:white;
+}
+
+/* Dashboards */
+
+.dash{
+    display:none;
+}
+
+.active-dash{
+    display:block;
+}
+
+/* Tableau container */
+
+.tableauPlaceholder{
+    width:100%;
+    border-radius:20px;
+    overflow:hidden;
+    box-shadow:0 20px 60px rgba(0,0,0,0.7);
+}
+
+</style>
+
+<div class="dashboard-container">
+
+<h2 class="page-title">Interactive Heart Disease Dashboards</h2>
+
+<div class="tabs">
+<button class="tab-btn active" onclick="showDash('d1',this)">Demographic Analysis</button>
+<button class="tab-btn" onclick="showDash('d2',this)">Lifestyle Factors</button>
+</div>
+
+
+<!-- DEMOGRAPHIC -->
+
+<div id="d1" class="dash active-dash">
+
+<div class='tableauPlaceholder' id='vizDemo' style='position:relative'>
+
+<noscript>
+<a href='#'>
+<img src='https://public.tableau.com/static/images/He/HeartDiseaseAnalysisdash1/Dashboard1/1_rss.png' style='border:none;width:100%'/>
+</a>
+</noscript>
+
+<object class='tableauViz' style='display:none;'>
+
+<param name='host_url' value='https://public.tableau.com/' />
+<param name='embed_code_version' value='3' />
+<param name='name' value='HeartDiseaseAnalysisdash1/Dashboard1' />
+<param name='tabs' value='yes' />
+<param name='toolbar' value='yes' />
+
+</object>
+
+</div>
+
+</div>
+
+
+<!-- LIFESTYLE -->
+
+<div id="d2" class="dash">
+
+<div class='tableauPlaceholder' id='vizLife' style='position:relative'>
+
+<noscript>
+<a href='#'>
+<img src='https://public.tableau.com/static/images/He/HeartDiseaseAnalysisdash1/Dashboard2/1_rss.png' style='border:none;width:100%'/>
+</a>
+</noscript>
+
+<object class='tableauViz' style='display:none;'>
+
+<param name='host_url' value='https://public.tableau.com/' />
+<param name='embed_code_version' value='3' />
+<param name='name' value='HeartDiseaseAnalysisdash1/Dashboard2' />
+<param name='tabs' value='yes' />
+<param name='toolbar' value='yes' />
+
+</object>
+
+</div>
+
+</div>
+
+</div>
+
+<script>
+
+/* TAB SWITCH */
+
+function showDash(id,btn){
+
+document.querySelectorAll('.dash').forEach(d=>{
+d.classList.remove('active-dash')
+})
+
+document.querySelectorAll('.tab-btn').forEach(b=>{
+b.classList.remove('active')
+})
+
+document.getElementById(id).classList.add('active-dash')
+btn.classList.add('active')
+
+}
+
+/* LOAD TABLEAU DASHBOARDS */
+
+function loadViz(id){
+
+var div=document.getElementById(id)
+var viz=div.getElementsByTagName("object")[0]
+
+viz.style.width="100%"
+viz.style.height="900px"
+
+var script=document.createElement("script")
+script.src="https://public.tableau.com/javascripts/api/viz_v1.js"
+viz.parentNode.insertBefore(script,viz)
+
+}
+
+loadViz("vizDemo")
+loadViz("vizLife")
+
+</script>
+
+{% endblock %}

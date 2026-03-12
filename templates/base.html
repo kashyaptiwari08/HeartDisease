@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Heart Disease Analysis</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- Google Font -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="{{ url_for('static', filename='static.css') }}">
+
+<style>
+
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background: radial-gradient(circle at top left, #0f2027, #0a1c24 60%);
+    color: #e6f7ff;
+}
+
+/* NAVBAR */
+
+.navbar {
+    position: sticky;
+    top: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px 8%;
+    background: rgba(10, 28, 36, 0.7);
+    backdrop-filter: blur(12px);
+    z-index: 1000;
+}
+
+/* LOGO */
+
+.logo {
+    font-size: 22px;
+    font-weight: 700;
+    background: linear-gradient(90deg,#00c6ff,#00f5a0);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* NAV LINKS */
+
+.nav-links a {
+    margin-left: 30px;
+    text-decoration: none;
+    color: #cdebf3;
+    font-weight: 500;
+    position: relative;
+    transition: 0.3s;
+}
+
+/* Hover Underline */
+
+.nav-links a::after {
+    content: "";
+    position: absolute;
+    width: 0%;
+    height: 2px;
+    bottom: -5px;
+    left: 0;
+    background: linear-gradient(90deg,#00c6ff,#38f9d7);
+    transition: 0.4s;
+}
+
+.nav-links a:hover::after {
+    width: 100%;
+}
+
+.nav-links a:hover {
+    color: #38f9d7;
+}
+
+/* FOOTER */
+
+footer {
+    text-align: center;
+    padding: 25px;
+    background: rgba(10,28,36,0.7);
+    backdrop-filter: blur(10px);
+    margin-top: 60px;
+    font-size: 14px;
+    letter-spacing: 1px;
+    color: #9ecedb;
+}
+
+footer span {
+    background: linear-gradient(90deg,#00c6ff,#00f5a0);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 600;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:768px){
+
+.nav-links a{
+    margin-left:15px;
+    font-size:14px;
+}
+
+.logo{
+    font-size:18px;
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<nav class="navbar">
+
+<div class="logo">💙 Heart Disease Analysis</div>
+
+<div class="nav-links">
+<a href="/">Home</a>
+<a href="/dashboard">Dashboard</a>
+<a href="/story">Story</a>
+</div>
+
+</nav>
+
+
+{% block content %}{% endblock %}
+
+
+<footer>
+© 2026 <span>Heart Disease Project</span> | Built with Flask + Tableau
+</footer>
+
+</body>
+</html>

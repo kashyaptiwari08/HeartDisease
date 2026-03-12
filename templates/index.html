@@ -1,0 +1,363 @@
+{% extends "base.html" %}
+{% block content %}
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap');
+
+body{
+    font-family:'Poppins',sans-serif;
+    background:#0f2027;
+    color:#e6f7ff;
+    margin:0;
+}
+
+/* Background Glow */
+body::before{
+    content:"";
+    position:fixed;
+    width:120%;
+    height:120%;
+    background:radial-gradient(circle at 40% 30%, rgba(0,200,255,0.15), transparent 60%);
+    animation:moveGlow 12s infinite alternate ease-in-out;
+    z-index:-1;
+}
+
+@keyframes moveGlow{
+    from{transform:translate(-5%, -5%) scale(1);}
+    to{transform:translate(5%, 5%) scale(1.1);}
+}
+
+/* HERO */
+
+.hero{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:80px 10%;
+    min-height:85vh;
+}
+
+.hero-left{
+    max-width:520px;
+}
+
+.hero-left h1{
+    font-size:52px;
+    font-weight:800;
+    line-height:1.2;
+    background:linear-gradient(90deg,#00c6ff,#00f5a0);
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+}
+
+.hero-left p{
+    font-size:17px;
+    opacity:0.8;
+    margin:20px 0;
+}
+
+.hero-btn{
+    padding:12px 32px;
+    border-radius:40px;
+    font-weight:600;
+    text-decoration:none;
+    background:linear-gradient(45deg,#00c6ff,#38f9d7);
+    color:white;
+    box-shadow:0 0 20px rgba(0,200,255,0.4);
+    transition:0.3s;
+}
+
+.hero-btn:hover{
+    transform:scale(1.05);
+}
+
+/* Floating image */
+
+.hero-right img{
+    width:420px;
+    max-width:100%;
+    border-radius:20px;
+    box-shadow:0 20px 40px rgba(0,0,0,0.4);
+    animation:float 4s ease-in-out infinite;
+}
+
+@keyframes float{
+    0%,100%{transform:translateY(0);}
+    50%{transform:translateY(-15px);}
+}
+
+/* HEARTBEAT ECG */
+
+/* HEARTBEAT ECG */
+
+.heartbeat{
+width:260px;
+margin:20px auto;   /* centers horizontally */
+display:flex;
+justify-content:center;
+}
+
+.heartbeat svg{
+width:100%;
+height:60px;
+}
+
+.heart-line{
+fill:none;
+stroke:#00f5a0;
+stroke-width:4;
+stroke-linecap:round;
+stroke-linejoin:round;
+
+stroke-dasharray:600;
+stroke-dashoffset:600;
+
+animation:heartbeat 2.5s linear infinite;
+}
+
+@keyframes heartbeat{
+0%{
+stroke-dashoffset:600;
+}
+100%{
+stroke-dashoffset:0;
+}
+}
+
+/* SECTION */
+
+section{
+    padding:80px 10%;
+}
+
+.section-title{
+    font-size:32px;
+    text-align:center;
+    margin-bottom:40px;
+    font-weight:700;
+    background:linear-gradient(90deg,#00c6ff,#00f5a0);
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+}
+
+/* STATS */
+
+.stats{
+    display:flex;
+    justify-content:center;
+    gap:40px;
+    flex-wrap:wrap;
+}
+
+.stat-box h3{
+    font-size:36px;
+    margin:0;
+    background:linear-gradient(90deg,#00c6ff,#38f9d7);
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+}
+
+.stat-box p{
+    font-size:14px;
+    opacity:0.7;
+}
+
+/* OVERVIEW */
+
+.overview-grid{
+    display:flex;
+    gap:25px;
+    flex-wrap:wrap;
+    justify-content:center;
+}
+
+.overview-card{
+    background:rgba(255,255,255,0.04);
+    padding:28px;
+    border-radius:18px;
+    width:280px;
+    transition:0.3s;
+}
+
+.overview-card:hover{
+    transform:translateY(-8px);
+    box-shadow:0 0 30px rgba(0,200,255,0.35);
+}
+
+.overview-card h4{
+    margin-bottom:12px;
+    font-size:16px;
+    color:#38f9d7;
+}
+
+.overview-card p{
+    font-size:14px;
+    opacity:0.8;
+}
+
+/* DASHBOARDS */
+
+.features{
+    display:flex;
+    justify-content:center;
+    gap:30px;
+    flex-wrap:wrap;
+}
+
+.card{
+    width:280px;
+    padding:30px;
+    border-radius:20px;
+    background:rgba(255,255,255,0.05);
+    transition:0.3s;
+}
+
+.card:hover{
+    transform:translateY(-10px);
+    box-shadow:0 0 35px rgba(0,200,255,0.45);
+}
+
+.card h3{
+    font-size:18px;
+    margin-bottom:10px;
+}
+
+.card p{
+    font-size:13px;
+    opacity:0.7;
+}
+
+.card a{
+    display:inline-block;
+    margin:12px 0;
+    padding:8px 18px;
+    border-radius:20px;
+    background:linear-gradient(45deg,#00c6ff,#38f9d7);
+    color:white;
+    text-decoration:none;
+    font-size:13px;
+}
+
+/* Responsive */
+
+@media(max-width:900px){
+
+.hero{
+    flex-direction:column;
+    text-align:center;
+}
+
+.hero-right img{
+    margin-top:30px;
+    width:260px;
+}
+
+}
+
+</style>
+
+<!-- HERO -->
+
+<section class="hero">
+
+<div class="hero-left">
+
+<h1>Heart Disease Analysis</h1>
+
+<div class="heartbeat">
+<svg viewBox="0 0 500 100">
+<path d="M0 50 L60 50 L80 20 L100 80 L120 50 L180 50 L200 30 L220 70 L240 50 L500 50" class="heart-line"/>
+</svg>
+</div>
+
+<p>
+Data-driven cardiovascular risk insights powered by interactive Tableau dashboards.
+</p>
+
+<a href="/dashboard" class="hero-btn">Launch Dashboard</a>
+
+</div>
+
+<div class="hero-right">
+<!-- <img src="https://media.istockphoto.com/id/455237505/photo/doctor-holding-heart.jpg?s=612x612&w=0&k=20&c=Cnb5Loe7gAB49NX6lerlWgQZQYJYO2DZz_xrtX5czck="> -->
+</div>
+
+</section>
+
+<!-- STATS -->
+
+<section>
+
+<div class="stats">
+
+<div class="stat-box">
+<h3>3</h3>
+<p>Dashboards</p>
+</div>
+
+<div class="stat-box">
+<h3>6+</h3>
+<p>Risk Factors</p>
+</div>
+
+<div class="stat-box">
+<h3>1000+</h3>
+<p>Records</p>
+</div>
+
+</div>
+
+</section>
+
+<!-- OVERVIEW -->
+
+<section>
+
+<h2 class="section-title">Project Overview</h2>
+
+<div class="overview-grid">
+
+<div class="overview-card">
+<h4>Data Scope</h4>
+<p>Demographics, BMI, diabetes, stroke and lifestyle factors.</p>
+</div>
+
+<div class="overview-card">
+<h4>Objective</h4>
+<p>Identify high-risk groups and correlation patterns.</p>
+</div>
+
+<div class="overview-card">
+<h4>Methodology</h4>
+<p>Interactive dashboards with trend & comparison analytics.</p>
+</div>
+
+</div>
+
+</section>
+
+<!-- DASHBOARDS -->
+
+<section>
+
+<h2 class="section-title">Dashboards</h2>
+
+<div class="features">
+
+<div class="card">
+<h3>Demographic</h3>
+<a href="https://public.tableau.com/views/heartdiseaseg/Demographicanalysis?:embed=yes&:showVizHome=no" target="_blank">Open</a>
+<p>Age & gender distribution.</p>
+</div>
+
+<div class="card">
+<h3>Lifestyle</h3>
+<a href="https://public.tableau.com/views/heartdiseasegro/LifestyleRiskFactors?:embed=yes&:showVizHome=no" target="_blank">Open</a>
+<p>Smoking & activity analysis.</p>
+</div>
+
+</div>
+
+</section>
+
+{% endblock %}
